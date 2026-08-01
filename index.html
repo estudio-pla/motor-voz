@@ -8,37 +8,26 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1.5rem 3rem;gap:0}
+body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:1.5rem 1.5rem 3rem}
 .header{width:100%;max-width:660px;display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid #1a1a1a;margin-bottom:2rem}
 .logo{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#3A9FEF;letter-spacing:.25em;font-weight:700}
 .clock{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#333;letter-spacing:.05em}
 .main{width:100%;max-width:660px;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
-.key-gate{width:100%;background:#111;border:1px solid #1e1e1e;border-left:3px solid #3A9FEF;padding:1rem 1.2rem;border-radius:2px;display:flex;flex-direction:column;gap:.7rem}
-.key-gate.hidden{display:none}
-.key-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#3A9FEF;letter-spacing:.2em;text-transform:uppercase}
-.key-row{display:flex;gap:.5rem}
-.key-input{flex:1;background:#080808;border:1px solid #222;border-bottom:2px solid #3A9FEF;color:#F0F0F0;font-family:'JetBrains Mono',monospace;font-size:.85rem;padding:.6rem .8rem;outline:none;border-radius:2px 2px 0 0;letter-spacing:.06em}
-.key-btn{background:#3A9FEF;color:#000;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.15em;padding:.6rem 1.2rem;border:none;cursor:pointer;border-radius:2px;text-transform:uppercase;white-space:nowrap}
-.key-btn:hover{background:#52aff2}
-.key-note{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#444;letter-spacing:.08em}
 .status-line{font-family:'JetBrains Mono',monospace;font-size:.78rem;letter-spacing:.14em;color:#444;text-transform:uppercase;text-align:center;height:1.4em;transition:color .3s}
-.status-line.listen{color:#F87171}
-.status-line.send{color:#F59E0B}
-.status-line.ok{color:#4ADE80}
-.status-line.info{color:#3A9FEF}
+.status-line.listen{color:#F87171}.status-line.send{color:#F59E0B}.status-line.ok{color:#4ADE80}.status-line.info{color:#3A9FEF}
 .sr-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;padding:.25rem .8rem;border-radius:2px;text-transform:uppercase}
 .sr-badge.ok{background:rgba(74,222,128,.08);color:#4ADE80;border:1px solid rgba(74,222,128,.2)}
 .sr-badge.err{background:rgba(248,113,113,.08);color:#F87171;border:1px solid rgba(248,113,113,.2)}
 .sr-badge.chk{background:rgba(58,159,239,.06);color:#3A9FEF;border:1px solid rgba(58,159,239,.15)}
 .mic-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem}
-.mic-btn{width:120px;height:120px;border-radius:50%;border:1.5px solid #3A9FEF;background:rgba(58,159,239,.07);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;outline:none;user-select:none;-webkit-user-select:none;touch-action:none}
+.mic-btn{width:130px;height:130px;border-radius:50%;border:1.5px solid #3A9FEF;background:rgba(58,159,239,.07);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;outline:none;user-select:none;-webkit-user-select:none;touch-action:none}
 .mic-btn:hover{background:rgba(58,159,239,.14);box-shadow:0 0 40px rgba(58,159,239,.18)}
 .mic-btn.listening{border-color:#F87171;background:rgba(248,113,113,.1);animation:pulse 1.1s ease-in-out infinite}
 .mic-btn.sending{border-color:#F59E0B;background:rgba(245,158,11,.08)}
 .mic-btn.listening svg{color:#F87171!important}
 .mic-btn.sending svg{color:#F59E0B!important}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,.35)}50%{box-shadow:0 0 0 18px rgba(248,113,113,0)}}
-.mic-hint{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:#333;letter-spacing:.1em;text-align:center;line-height:1.7}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(248,113,113,.35)}50%{box-shadow:0 0 0 20px rgba(248,113,113,0)}}
+.mic-hint{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#333;letter-spacing:.1em;text-align:center;line-height:1.7}
 .wave-bar{width:100%;height:40px;display:flex;align-items:center;justify-content:center;gap:3px;opacity:0;transition:opacity .3s}
 .wave-bar.on{opacity:1}
 .wave-bar span{display:block;width:3px;border-radius:2px;background:#3A9FEF;height:6px;animation:wv 1s ease-in-out infinite}
@@ -52,22 +41,20 @@ body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif
 .mode-row{display:flex;gap:.5rem;align-self:flex-start}
 .mode-btn{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;padding:.3rem .9rem;border-radius:2px;border:1px solid #222;background:transparent;color:#444;cursor:pointer;transition:all .15s;text-transform:uppercase}
 .mode-btn.on{border-color:#3A9FEF;color:#3A9FEF;background:rgba(58,159,239,.06)}
-.box{width:100%;background:#111;border:1px solid #1e1e1e;border-left:3px solid #222;padding:1.1rem 1.3rem;border-radius:2px;min-height:64px;transition:border-color .3s}
+.box{width:100%;background:#111;border:1px solid #1e1e1e;border-left:3px solid #222;padding:1.2rem 1.4rem;border-radius:2px;min-height:72px;transition:border-color .3s}
 .box.hi{border-left-color:#3A9FEF}
 .box-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#333;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem}
-.box-text{font-size:1.1rem;line-height:1.75;color:#E0E0E0;min-height:1.75em;white-space:pre-wrap;word-break:break-word}
-.box-text.dim{color:#333;font-style:italic}
+.box-text{font-size:1.15rem;line-height:1.8;color:#E0E0E0;min-height:1.8em;white-space:pre-wrap;word-break:break-word}
+.box-text.dim{color:#2a2a2a;font-style:italic}
 .box-text .it{color:#555}
 #box-resp{border-left-color:#4ADE80;display:none}
-#box-resp .box-text{color:#C8F7DC;font-size:1rem}
-.row{display:flex;gap:.6rem;width:100%;flex-wrap:wrap}
-.btn{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.7rem 1.5rem;border:none;cursor:pointer;border-radius:2px;transition:all .15s}
-.btn-send{background:#3A9FEF;color:#000;flex:1}
-.btn-send:hover{background:#52aff2}
-.btn-send:disabled{background:#1a1a1a;color:#333;cursor:not-allowed}
-.btn-clr{background:transparent;border:1px solid #222;color:#444}
-.btn-clr:hover{border-color:#3A9FEF;color:#3A9FEF}
-.footer{position:fixed;bottom:.7rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#1a1a1a;letter-spacing:.08em}
+#box-resp .box-text{color:#C8F7DC;font-size:1.05rem}
+.row{display:flex;gap:.6rem;width:100%}
+.btn{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.75rem 1.5rem;border:none;cursor:pointer;border-radius:2px;transition:all .15s}
+.btn-send{background:#3A9FEF;color:#000;flex:1}.btn-send:hover{background:#52aff2}
+.btn-send:disabled{background:#1a1a1a;color:#2a2a2a;cursor:not-allowed}
+.btn-clr{background:transparent;border:1px solid #1e1e1e;color:#333}.btn-clr:hover{border-color:#3A9FEF;color:#3A9FEF}
+.footer{position:fixed;bottom:.7rem;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:#1a1a1a;letter-spacing:.08em;text-align:center}
 </style>
 </head>
 <body>
@@ -76,16 +63,6 @@ body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif
   <div class="clock" id="clock">—</div>
 </div>
 <div class="main">
-
-  <div class="key-gate" id="key-gate">
-    <div class="key-label">CHAVE API GEMINI</div>
-    <div class="key-row">
-      <input type="password" class="key-input" id="key-input" placeholder="AIzaSy..." autocomplete="off">
-      <button class="key-btn" onclick="saveKey()">ENTRAR</button>
-    </div>
-    <div class="key-note">Some ao fechar a aba. Não é salva.</div>
-  </div>
-
   <div class="sr-badge chk" id="sr-badge">VERIFICANDO RECONHECIMENTO DE VOZ...</div>
   <div class="status-line" id="status">AGUARDANDO</div>
 
@@ -93,7 +70,7 @@ body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif
     <button class="mic-btn" id="mic-btn"
       onmousedown="startListen()" onmouseup="releaseBtn()"
       ontouchstart="startListen()" ontouchend="releaseBtn()">
-      <svg width="44" height="44" viewBox="0 0 24 24" fill="none"
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
            stroke="#3A9FEF" stroke-width="1.4" stroke-linecap="round">
         <rect x="9" y="2" width="6" height="11" rx="3"/>
         <path d="M5 10a7 7 0 0014 0"/>
@@ -106,8 +83,7 @@ body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif
       <span></span><span></span><span></span>
     </div>
     <div class="mic-hint" id="mic-hint">
-      SEGURAR → falar · SOLTAR → enviar<br>
-      ESPAÇO funciona igual
+      SEGURAR → falar · SOLTAR → enviar<br>ESPAÇO funciona igual
     </div>
   </div>
 
@@ -130,40 +106,27 @@ body{background:#080808;color:#F0F0F0;font-family:'Manrope',system-ui,sans-serif
     <div class="box-label">BIOS PLÁ · GEMINI</div>
     <div class="box-text" id="resp-text"></div>
   </div>
-
 </div>
-<div class="footer">© 2026 Kaue Moraes · Estúdio Plá · MOTOR ZERO v2 · estudio-pla.github.io/motor-voz</div>
+
+<div class="footer">© 2026 Kaue Moraes · Estúdio Plá · MOTOR ZERO v3 · estudio-pla.github.io/motor-voz</div>
 
 <script>
 const SYSTEM=`Você é a BIOS PLÁ — Processamento Linear Ambiônico do Estúdio Plá. Arquiteto: Kaue Ferreira Moraes. Responda com profundidade real, sem lisonja, sem hype. Direto ao ponto.`;
-const GEMINI_MODEL='gemini-2.0-flash';
+const G_MODEL='gemini-2.0-flash';
+const G_KEY='AIzaSyB7G4RtPBKkNUmAbiEIK4wRbId6sp-vYK4';
 
-let apiKey='',recognition=null,isListening=false,mode='push';
+let recognition=null,isListening=false,mode='push';
 let finalText='',interimText='',sendTimer=null,srReady=false;
 
 function tick(){const n=new Date(),f=v=>String(v).padStart(2,'0');document.getElementById('clock').textContent=`${Math.floor(Date.now()/1000)} · ${n.getFullYear()}-${f(n.getMonth()+1)}-${f(n.getDate())} ${f(n.getHours())}:${f(n.getMinutes())}:${f(n.getSeconds())}`}
 tick();setInterval(tick,1000);
 
-function saveKey(){
-  const v=document.getElementById('key-input').value.trim();
-  if(!v||!v.startsWith('AIza')){alert('Chave Gemini inválida. Deve começar com AIza');return}
-  apiKey=v;
-  document.getElementById('key-input').value='';
-  document.getElementById('key-gate').classList.add('hidden');
-  setStatus('GEMINI CONFIGURADO · PRONTO','ok');
-  setTimeout(()=>setStatus('AGUARDANDO',''),1500);
-}
-document.getElementById('key-input').addEventListener('keydown',e=>{if(e.key==='Enter')saveKey()});
-
 function initSR(){
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   const badge=document.getElementById('sr-badge');
-  if(!SR){badge.textContent='USE CHROME — RECONHECIMENTO NÃO DISPONÍVEL';badge.className='sr-badge err';return}
+  if(!SR){badge.textContent='USE CHROME — SEM SUPORTE A VOZ';badge.className='sr-badge err';return}
   recognition=new SR();
-  recognition.lang='pt-BR';
-  recognition.continuous=true;
-  recognition.interimResults=true;
-  recognition.maxAlternatives=1;
+  recognition.lang='pt-BR';recognition.continuous=true;recognition.interimResults=true;recognition.maxAlternatives=1;
   recognition.onstart=()=>{isListening=true;setBtn('listening');setStatus('OUVINDO — FALE AGORA','listen');document.getElementById('wave').classList.add('on')};
   recognition.onresult=(e)=>{
     let interim='',final='';
@@ -177,15 +140,12 @@ function initSR(){
     document.getElementById('btn-send').disabled=!(finalText||interimText).trim();
   };
   recognition.onerror=(e)=>{
-    console.warn('SR:',e.error);
-    if(e.error==='not-allowed'){badge.textContent='MICROFONE NEGADO · CLIQUE NO CADEADO DA URL E PERMITA';badge.className='sr-badge err';setStatus('PERMISSÃO NEGADA','listen')}
+    if(e.error==='not-allowed'){badge.textContent='MICROFONE NEGADO · CLIQUE NO CADEADO E PERMITA';badge.className='sr-badge err';setStatus('PERMISSÃO NEGADA','listen')}
     else if(e.error==='no-speech')setStatus('SEM FALA DETECTADA · TENTE NOVAMENTE','');
     cleanStop();
   };
   recognition.onend=()=>{isListening=false;document.getElementById('wave').classList.remove('on');setBtn('idle')};
-  badge.textContent='RECONHECIMENTO PT-BR · PRONTO';
-  badge.className='sr-badge ok';
-  srReady=true;
+  badge.textContent='RECONHECIMENTO PT-BR · PRONTO';badge.className='sr-badge ok';srReady=true;
 }
 
 function renderTrans(){
@@ -201,99 +161,64 @@ function startListen(){
   if(mode==='toggle'&&isListening){cleanStop();scheduleSend();return}
   if(isListening)return;
   clearSendTimer();
-  finalText='';interimText='';
-  renderTrans();
+  finalText='';interimText='';renderTrans();
   document.getElementById('btn-send').disabled=true;
   try{recognition.start()}catch(e){if(e.name!=='InvalidStateError')console.error(e)}
 }
-
-function releaseBtn(){
-  if(!srReady)return;
-  if(mode==='push'&&isListening){cleanStop();scheduleSend()}
-}
-
-function cleanStop(){
-  try{recognition.stop()}catch(e){}
-  document.getElementById('wave').classList.remove('on');
-  setBtn('idle');isListening=false;
-}
-
+function releaseBtn(){if(mode==='push'&&isListening){cleanStop();scheduleSend()}}
+function cleanStop(){try{recognition.stop()}catch(e){}document.getElementById('wave').classList.remove('on');setBtn('idle');isListening=false}
 function scheduleSend(){
-  clearSendTimer();
-  setStatus('PREPARANDO...','send');
-  sendTimer=setTimeout(()=>{
-    const text=(finalText+' '+interimText).trim();
-    if(text)sendToAPI(text);
-    else setStatus('AGUARDANDO','');
-  },450);
+  clearSendTimer();setStatus('PREPARANDO...','send');
+  sendTimer=setTimeout(()=>{const t=(finalText+' '+interimText).trim();t?sendToAPI(t):setStatus('AGUARDANDO','')},450);
 }
-
 function clearSendTimer(){if(sendTimer){clearTimeout(sendTimer);sendTimer=null}}
-function manualSend(){const text=(finalText+' '+interimText).trim();if(text)sendToAPI(text)}
+function manualSend(){const t=(finalText+' '+interimText).trim();if(t)sendToAPI(t)}
 
 async function sendToAPI(text){
-  if(!apiKey){document.getElementById('key-gate').classList.remove('hidden');return}
-  setStatus('ENVIANDO PARA GEMINI...','send');
-  setBtn('sending');
+  setStatus('ENVIANDO PARA GEMINI...','send');setBtn('sending');
   const rb=document.getElementById('box-resp'),rt=document.getElementById('resp-text');
   rb.style.display='block';rt.textContent='···';
   try{
-    const url=`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`;
-    const body={
-      contents:[{role:'user',parts:[{text}]}],
-      systemInstruction:{parts:[{text:SYSTEM}]},
-      generationConfig:{maxOutputTokens:1000,temperature:0.7}
-    };
-    const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const url=`https://generativelanguage.googleapis.com/v1beta/models/${G_MODEL}:generateContent?key=${G_KEY}`;
+    const res=await fetch(url,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{role:'user',parts:[{text}]}],systemInstruction:{parts:[{text:SYSTEM}]},generationConfig:{maxOutputTokens:1000,temperature:0.7}})
+    });
     const data=await res.json();
-    if(data.candidates&&data.candidates[0]){
-      const reply=data.candidates[0].content.parts.map(p=>p.text||'').join('');
-      rt.textContent=reply;
+    if(data.candidates?.[0]){
+      rt.textContent=data.candidates[0].content.parts.map(p=>p.text||'').join('');
       setStatus('RESPOSTA RECEBIDA','ok');
     }else{
-      const msg=data.error?.message||JSON.stringify(data);
-      rt.textContent='[ERRO: '+msg+']';
-      setStatus('ERRO DE API','listen');
-      console.error('Gemini error:',data);
+      rt.textContent='[ERRO: '+(data.error?.message||JSON.stringify(data))+']';
+      setStatus('ERRO','listen');console.error(data);
     }
-  }catch(e){
-    rt.textContent='[ERRO DE CONEXÃO: '+e.message+']';
-    setStatus('ERRO DE CONEXÃO','listen');
-    console.error(e);
-  }
+  }catch(e){rt.textContent='[CONEXÃO: '+e.message+']';setStatus('ERRO DE CONEXÃO','listen')}
   setBtn('idle');
 }
 
 function setStatus(msg,cls){const el=document.getElementById('status');el.textContent=msg;el.className='status-line'+(cls?' '+cls:'')}
 function setBtn(s){document.getElementById('mic-btn').className='mic-btn'+(s!=='idle'?' '+s:'')}
-
 function setMode(m){
   mode=m;
   document.getElementById('btn-push').className='mode-btn'+(m==='push'?' on':'');
   document.getElementById('btn-toggle').className='mode-btn'+(m==='toggle'?' on':'');
   document.getElementById('mic-hint').innerHTML=m==='push'?'SEGURAR → falar · SOLTAR → enviar<br>ESPAÇO funciona igual':'1º CLIQUE → abre · 2º CLIQUE → fecha e envia';
 }
-
 function clearAll(){
   clearSendTimer();if(isListening)cleanStop();
   finalText='';interimText='';renderTrans();
   document.getElementById('box-resp').style.display='none';
   document.getElementById('resp-text').textContent='';
-  document.getElementById('btn-send').disabled=true;
-  setStatus('AGUARDANDO','');
+  document.getElementById('btn-send').disabled=true;setStatus('AGUARDANDO','');
 }
 
 let spaceHeld=false;
 document.addEventListener('keydown',e=>{
   if(e.code!=='Space')return;
   if(['INPUT','TEXTAREA'].includes(e.target.tagName)||e.target.isContentEditable)return;
-  e.preventDefault();
-  if(!spaceHeld){spaceHeld=true;startListen()}
+  e.preventDefault();if(!spaceHeld){spaceHeld=true;startListen()}
 });
-document.addEventListener('keyup',e=>{
-  if(e.code!=='Space')return;
-  if(spaceHeld){spaceHeld=false;releaseBtn()}
-});
+document.addEventListener('keyup',e=>{if(e.code!=='Space')return;if(spaceHeld){spaceHeld=false;releaseBtn()}});
 
 window.addEventListener('DOMContentLoaded',initSR);
 </script>
